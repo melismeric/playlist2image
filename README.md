@@ -13,7 +13,7 @@
 ## August 2022
 - First Notebook 
 ## September 2022
-- 
+- custom training
 ## October 2022
 - mood names modification
 - NN model
