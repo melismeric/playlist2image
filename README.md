@@ -292,6 +292,15 @@ Along with the mood map I used neural networks to predict the mood of each song.
 To train the neural network I used Spotify mood playlists like [Ting Neo’s,](https://neokt.github.io/projects/audio-music-mood-classification/) [Cristóbal Veas’s](https://towardsdatascience.com/predicting-the-music-mood-of-a-song-with-deep-learning-c3ac2b45229e) and K [Singh’s](https://medium.com/codex/music-mood-classification-using-neural-networks-and-spotifys-web-api-d73b391044a4) respective works on Music Mood Classification. Spotify creates playlists for moods considering audio features of songs. The data is obtained from Spotify using the `spotipy`
 Python library. I created a dataset with 5 mood class dataset as I found the accuracy is better with the 5 mood class dataset than higher numbered mood classes datasets. I selected Spotify mood playlists by first testing the code with the moods : 'Energetic', 'Relaxing', 'Dark', 'Sad', 'Happy' , 'Focused', 'Romantic' however the accuracy was 0.4. Then reduced the mood classes and got the best accuracy as 0.7 by selecting the mood classes as 'Energetic', 'Relaxing', 'Sad', 'Happy' , 'Focused', each class having 7 playlists. In total the dataset to train the model had 3100 songs. 
 
+DATASET FOR TRAINING
+```python
+moodPlaylists = {'Energetic' : ["https://open.spotify.com/playlist/37i9dQZF1DX6GwdWRQMQpq?si=bb9a9eb13d67446b", "https://open.spotify.com/playlist/37i9dQZF1DX0vHZ8elq0UK?si=8e7627fc41e84130", "https://open.spotify.com/playlist/37i9dQZF1DWZaiuILgorJB?si=e4cda8b4265e4597", "https://open.spotify.com/playlist/37i9dQZF1DX1tyCD9QhIWF?si=5d850dafd2ca493e", "https://open.spotify.com/playlist/37i9dQZF1DWZixSclZdoFE?si=86de20681e7647d6", "https://open.spotify.com/playlist/37i9dQZF1DXaXB8fQg7xif?si=1cc135d864e44539", "https://open.spotify.com/playlist/37i9dQZF1DWWY64wDtewQt?si=7b52a3c9dd1945a6"], 
+                 'Relaxing': ["https://open.spotify.com/playlist/37i9dQZF1DX0h2LvJ7ZJ15?si=95238d60897b4e30", "https://open.spotify.com/playlist/37i9dQZF1DWT4nLmUaFDGb?si=72c38790ab514a36", "https://open.spotify.com/playlist/37i9dQZF1DX6VdMW310YC7?si=387272cb689242fa", "https://open.spotify.com/playlist/37i9dQZF1DX2TRYkJECvfC?si=aa2786019f2b4fc8", "https://open.spotify.com/playlist/37i9dQZF1DX4wta20PHgwo?si=e83022f02335453d", "https://open.spotify.com/playlist/37i9dQZF1DWWzVPEmatsUB?si=9aa2252e02964767", "https://open.spotify.com/playlist/37i9dQZF1DX45szF6WfQmF?si=21f62688f9854a27"], 
+                 'Sad': ["https://open.spotify.com/playlist/37i9dQZF1DWX83CujKHHOn?si=31df5f4fc7654b1e", "https://open.spotify.com/playlist/37i9dQZF1DXbrUpGvoi3TS?si=6cefbee2f477416b", "https://open.spotify.com/playlist/37i9dQZF1DX7qK8ma5wgG1?si=944118f05ff241e1", "https://open.spotify.com/playlist/37i9dQZF1DWSqBruwoIXkA?si=7f6223a8ce654ce2", "https://open.spotify.com/playlist/37i9dQZF1DWZUAeYvs88zc?si=5fad2245950f419e", "https://open.spotify.com/playlist/37i9dQZF1DX59NCqCqJtoH?si=8f73cb11bb744264", "https://open.spotify.com/playlist/37i9dQZF1DWU4lunzhQdRx?si=07be350b43444576"], 
+                 'Happy' :["https://open.spotify.com/playlist/37i9dQZF1DXdPec7aLTmlC?si=72bec7f96a5f43a3", "https://open.spotify.com/playlist/37i9dQZF1DX3rxVfibe1L0?si=76e280f36d72456d", "https://open.spotify.com/playlist/37i9dQZF1DX9XIFQuFvzM4?si=d8b19391078846d2", "https://open.spotify.com/playlist/37i9dQZF1DX0tnKPLNG9Ld?si=acab9d466c2d4ff9", "https://open.spotify.com/playlist/37i9dQZF1DX5Lm1ZiObdc3?si=7faacfbf1ae44ddc", "https://open.spotify.com/playlist/37i9dQZF1DX2sUQwD7tbmL?si=4658564cf3314045", "https://open.spotify.com/playlist/37i9dQZF1DX2SK4ytI2KAZ?si=a16b2633f5634f3a"], 
+                 'Focused': ["https://open.spotify.com/playlist/37i9dQZF1DX50uBtloazYo?si=d47ba7615b27445c", "https://open.spotify.com/playlist/37i9dQZF1DWZeKCadgRdKQ?si=b4ce89a252a64109", "https://open.spotify.com/playlist/37i9dQZF1DX8NTLI2TtZa6?si=a91ed289f9ef4bdd", "https://open.spotify.com/playlist/37i9dQZF1DWWQRwui0ExPn?si=9f3570aab317470c", "https://open.spotify.com/playlist/37i9dQZF1DWXLeA8Omikj7?si=0e5dca3409364e5c", "https://open.spotify.com/playlist/37i9dQZF1DX0SM0LYsmbMT?si=3c67ad10e09f4408", "https://open.spotify.com/playlist/37i9dQZF1DXd5zUwdn6lPb?si=caf0fbc2dbd64efc"]}
+```
+
 **Preparing Train and Test Datasets**
 
 Then I split the data into **training and test sets**. **The training set has 2077 tracks and the test set has 1023 tracks.**
@@ -343,6 +352,8 @@ Based on the confusion matrix the highest number of incorrect classification see
 **Using the Model to Predict the Mood for Each Song**
 
 After getting a 71% accuracy with the neural network model I added the model to the Colab Notebook to classify given playlists’ songs. The predicted mood for each song will be the main mood to add the text prompt.
+
+More notes: https://balanced-romano-f52.notion.site/Multi-Class-Classification-f63dedbfae514d2c83327858fd00be8a
 
 
 ## November 2022
