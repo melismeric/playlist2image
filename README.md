@@ -1,5 +1,6 @@
 # Pixtape Tool Creation and Evaluation: How well can VQGAN-CLIP visualize the mood of a Spotify playlists?
 Video: https://youtu.be/gkJfaY45cWo
+
 Notebook: https://colab.research.google.com/drive/11b-NGMrYnOxRLsEd-ts6hxk0vrSbeS96?usp=sharing
 <img width="920" alt="Screen Shot 2022-11-21 at 01 00 24" src="https://user-images.githubusercontent.com/37816087/202937201-ccf51cc8-cd78-47fd-b504-a06ce43a3ad1.png">
 
@@ -212,7 +213,23 @@ Downie and Hu’s mood chart (2010)
 
 
 Here is the comparison of images generated with Last.fm Mood Labels and Gracenote Mood Labels.
+
+```python
+russelMoods = ["calm", "angry", "anxious", "sad", "mournful", "confident", "glad", "dreamy", "hopeful", "romantic", "cheerful", "earnest", "gleeful", "brooding", "cynical", "gloomy", "aggressive", "exciting"] 
+gracenoteMoods = ["Somber", "Gritty", "Serious", "Brooding", "Aggressive", "Melancholy", "Cool", "Yearning", "Urgent", "Defiant", "Sentimental", "Sophisticated", "Sensual", "Fiery", "Energizing", "Tender", "Romantic",  "Empowering", "Stirring", "Rowdy", "Peaceful", "Easygoing", "Upbeat", "Lively", "Excited"]
+```
+
+
 <img width="500" alt="Screen Shot 2022-11-21 at 01 24 15" src="https://user-images.githubusercontent.com/37816087/202938985-1f4911e9-c1fe-4be4-bdac-a41be2f996ac.png">
+
+```python
+NEW VERSION OF MOOD MAPPING METHOD
+# Russel mood keywords
+def getRusselMood(valence, energy):
+  array = [(0.4, 0.1), (0.35, 0.85), (0.25, 0.75), (0.2, 0.25), (0.2, 0.4), (0.8, 0.4), (0.9, 0.6), (0.35, 0.3), (0.55, 0.45), (0.55, 0.15), (0.8, 0.65), (0.7, 0.3), (0.8, 0.8), (0.8, 0.2), (0.3, 0.55), (0.1, 0.6), (0.25, 0.9), (0.6, 0.75)]
+  mood = russelMoods[closest_node((valence, energy), array)]
+  return mood
+```
 
 Collection of playlist results:
 [https://www.notion.so/Spotify-Playlist-Results-c05c5d988e1849088912e011c2d17e1a](https://balanced-romano-f52.notion.site/Spotify-Playlist-Results-c05c5d988e1849088912e011c2d17e1a)
