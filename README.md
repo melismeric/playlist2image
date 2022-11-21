@@ -283,6 +283,9 @@ for ind in songData.index:
 Here is the notebook I tested Logistic Regression and Neural Networks.
 https://colab.research.google.com/drive/1tkz-RlbT3f5potsbTMm56hkgG2n1DR8A?usp=sharing
 
+Here are the compared images generated with Mood Mapping and NN predicted moods. After this comparison I decided to use both of the mood classification methods.
+https://balanced-romano-f52.notion.site/Multi-Class-Classification-f63dedbfae514d2c83327858fd00be8a
+
 **Main Mood using Neural Networks**
 
 Along with the mood map I used neural networks to predict the mood of each song. 
